@@ -1,17 +1,17 @@
-import {Subject} from 'ironhook';
-import React from 'react';
+import * as Ironhook from 'ironhook';
+import * as React from 'react';
 
 export type IronhookResult<TValue> =
-  | {readonly type: 'never'}
+  | {readonly type: 'pending'}
   | {readonly type: 'value'; readonly value: TValue}
   | {readonly type: 'error'; readonly error: Error}
   | {readonly type: 'completed'};
 
 export function useIronhook<TValue>(
-  subject: Subject<TValue> | undefined
+  subject: Ironhook.Subject<TValue> | undefined
 ): IronhookResult<TValue> {
   const [result, setResult] = React.useState<IronhookResult<TValue>>({
-    type: 'never'
+    type: 'pending'
   });
 
   React.useEffect(

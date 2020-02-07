@@ -15,7 +15,7 @@
 [size-badge]: https://badgen.net/bundlephobia/minzip/ironhook-react
 [size-link]: https://bundlephobia.com/result?p=ironhook-react
 
-TODO.
+Allows easy use of Hooks written with Ironhook in React.
 
 ## Installation
 
@@ -29,6 +29,65 @@ Using `npm`:
 
 ```
 npm install ironhook-react --save
+```
+
+## Usage Example
+
+The following is a constructed example that demonstrates the use of this
+library:
+
+```js
+import * as Ironhook from 'ironhook';
+import * as IronhookReact from 'ironhook-react';
+import * as React from 'react';
+
+function useName() {
+  const [name, setName] = Ironhook.useState('World');
+
+  Ironhook.useEffect(() => {
+    setTimeout(() => setName('John Doe'), 10);
+  }, []);
+
+  return name;
+}
+
+function Hello() {
+  const nameSubject = React.useMemo(() => new Ironhook.Subject(useName), []);
+  const nameResult = IronhookReact.useIronhook(nameSubject);
+
+  switch (nameResult.type) {
+    case 'pending':
+      return <h1>Hello, Stranger!</h1>;
+    case 'value':
+      return <h1>Hello, {nameResult.value}!</h1>;
+    case 'error':
+      return <h1>Oops!</h1>;
+    case 'completed':
+      return <h1>Bye.</h1>;
+  }
+}
+```
+
+```js
+<Hello />
+```
+
+## API Reference
+
+### Types
+
+```ts
+function useIronhook<TValue>(
+  subject: Ironhook.Subject<TValue> | undefined
+): IronhookResult<TValue>;
+```
+
+```ts
+type IronhookResult<TValue> =
+  | {readonly type: 'pending'}
+  | {readonly type: 'value'; readonly value: TValue}
+  | {readonly type: 'error'; readonly error: Error}
+  | {readonly type: 'completed'};
 ```
 
 ## Development

@@ -1,10 +1,7 @@
 {
   "name": "ironhook-react",
   "version": "0.0.0",
-  "description": "TODO.",
-  "keywords": [
-    "TODO"
-  ],
+  "description": "Allows easy use of Hooks written with Ironhook in React.",
   "bugs": {
     "url": "https://github.com/clebert/ironhook-react/issues"
   },
@@ -22,8 +19,7 @@
   "module": "lib/esm/index.js",
   "types": "lib/cjs/index.d.ts",
   "scripts": {
-    "precompile": "rm -rf lib",
-    "compile": "tsc --project tsconfig.cjs.json && tsc --project tsconfig.esm.json",
+    "compile": "tsc --build tsconfig.cjs.json tsconfig.esm.json",
     "format": "prettier --write '**/*.{html,js,json,md,ts,tsx,yml}'",
     "release": "npm version",
     "postrelease": "git push --follow-tags",
@@ -34,14 +30,18 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@size-limit/preset-small-lib": "^4.0.0",
+    "@testing-library/react": "^9.4.0",
     "@types/jest": "^25.0.0",
     "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
     "ironhook": "^0.6.1",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "size-limit": "^4.0.0",
     "typescript": "^3.7.5"
   },
