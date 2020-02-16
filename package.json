@@ -1,6 +1,6 @@
 {
   "name": "ironhook-react",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Allows easy use of Hooks written with Ironhook in React.",
   "bugs": {
     "url": "https://github.com/clebert/ironhook-react/issues"
