@@ -3728,10 +3728,10 @@ ipaddr.js@1.9.0:
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.0.tgz#37df74e430a0e47550fe54a2defe30d8acd95f65"
   integrity sha512-M4Sjn6N/+O6/IXSJseKqHoFc+5FdGJ22sXqnjTpdZweHK64MzEPAyQZyEU3R/KRv2GLoa7nNtg/C2Ev6m7z+eA==
 
-ironhook@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/ironhook/-/ironhook-0.6.1.tgz#0b4c7868dbb3fa6a423d1f7bc68ba5ad5d433f73"
-  integrity sha512-XdJNl5kASS+dTRwH6fBNbcabl0U19D9p76pzG5FnQjXaqMdV9oTCpG4UeedeSfi6vmUALdygfZfMFrgdl7b5Ew==
+ironhook@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/ironhook/-/ironhook-0.7.0.tgz#6e149f14772745fc845a6f28c787edea0f758340"
+  integrity sha512-I6royvZZnBGlv2swFNgWt8VpraY4S4R3vyqn1vPN9q61DB3rXN6sjdCl7ImzxNDRIbMVqP8t+COtjOo22MAPTA==
 
 is-absolute-url@^2.0.0:
   version "2.1.0"
