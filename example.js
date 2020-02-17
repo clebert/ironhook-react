@@ -22,9 +22,6 @@ function Hello() {
   const nameResult = IronhookReact.useIronhook(nameSubject);
 
   switch (nameResult.type) {
-    case 'pending':
-      // return <h1>Hello, Stranger!</h1>;
-      return React.createElement('h1', {}, ['Hello, Stranger!']);
     case 'value':
       // return <h1>Hello, {nameResult.value}!</h1>;
       return React.createElement('h1', {}, [`Hello, ${nameResult.value}!`]);
@@ -44,5 +41,7 @@ const {renderToString} = require('react-dom/server');
 
 strictEqual(
   renderToString(React.createElement(Hello)),
-  '<h1 data-reactroot="">Hello, Stranger!</h1>'
+  '<h1 data-reactroot="">Hello, World!</h1>'
 );
+
+console.log('OK');
