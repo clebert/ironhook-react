@@ -4,7 +4,7 @@ import * as React from 'react';
 import {IronhookResult, useIronhook} from '.';
 
 interface TestComponentProps {
-  readonly subject?: Ironhook.Subject<string>;
+  readonly subject: Ironhook.Subject<string>;
 }
 
 function TestComponent({subject}: TestComponentProps): JSX.Element {
@@ -29,18 +29,8 @@ describe('useIronhook()', () => {
     });
   });
 
-  test('pending result', () => {
-    render(<TestComponent />);
-
-    expect(getIronhookResult()).toEqual({type: 'pending'});
-  });
-
   test('value result', async () => {
     render(<TestComponent subject={subject} />);
-
-    expect(getIronhookResult()).toEqual({type: 'pending'});
-
-    await waitForDomChange();
 
     updateSubject('b');
 
@@ -58,24 +48,42 @@ describe('useIronhook()', () => {
     expect(getIronhookResult()).toEqual({type: 'value', value: 'c'});
   });
 
+  test('initial error result', async () => {
+    render(
+      <TestComponent
+        subject={
+          new Ironhook.Subject(() => {
+            throw 'Oops!';
+          })
+        }
+      />
+    );
+
+    expect(getIronhookResult()).toEqual({type: 'error', error: 'Oops!'});
+  });
+
   test('error result', async () => {
     render(<TestComponent subject={subject} />);
 
-    await waitForDomChange();
-
     updateSubject(() => {
-      throw 'e';
+      throw 'Oops!';
     });
 
     await waitForDomChange();
 
-    expect(getIronhookResult()).toEqual({type: 'error', error: 'e'});
+    expect(getIronhookResult()).toEqual({type: 'error', error: 'Oops!'});
+  });
+
+  test('initial completed result', async () => {
+    subject.complete();
+
+    render(<TestComponent subject={subject} />);
+
+    expect(getIronhookResult()).toEqual({type: 'completed'});
   });
 
   test('completed result', async () => {
     render(<TestComponent subject={subject} />);
-
-    await waitForDomChange();
 
     subject.complete();
 
@@ -91,6 +99,6 @@ describe('useIronhook()', () => {
 
     unmount();
 
-    expect(unsubscribe).toBeCalledTimes(1);
+    expect(unsubscribe).toBeCalledTimes(2);
   });
 });

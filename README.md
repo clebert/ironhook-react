@@ -56,8 +56,6 @@ function Hello() {
   const nameResult = IronhookReact.useIronhook(nameSubject);
 
   switch (nameResult.type) {
-    case 'pending':
-      return <h1>Hello, Stranger!</h1>;
     case 'value':
       return <h1>Hello, {nameResult.value}!</h1>;
     case 'error':
@@ -78,13 +76,12 @@ function Hello() {
 
 ```ts
 function useIronhook<TValue>(
-  subject: Ironhook.Subject<TValue> | undefined
+  subject: Ironhook.Subject<TValue>
 ): IronhookResult<TValue>;
 ```
 
 ```ts
 type IronhookResult<TValue> =
-  | {readonly type: 'pending'}
   | {readonly type: 'value'; readonly value: TValue}
   | {readonly type: 'error'; readonly error: Error}
   | {readonly type: 'completed'};
