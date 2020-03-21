@@ -40,7 +40,7 @@
     "@types/react-dom": "^16.9.5",
     "ironhook": "^0.7.0",
     "jest": "^25.1.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "size-limit": "^4.0.0",
